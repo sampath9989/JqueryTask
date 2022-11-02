@@ -6,6 +6,7 @@ $("document").ready(() => {
         async: true,
         success: function (data) {
             let profile = data.results[0];
+            $("#headerImage").attr("src", "https://picsum.photos/750/250")
             // We got data
             $("#profileImage").attr("src", profile.picture.large);
             $("#profileName").text(
@@ -29,10 +30,11 @@ $("document").ready(() => {
             $("#profileAge").text(profile.dob.age);
             $("#profileSSN").text(profile.id.value || "Not available");
 
-
-
             // Hiding loading after loading data
-            $("#loading").addClass("d-none");
         },
     });
+    $("img").on("load", function (event) {
+        $("#loading").addClass("d-none");
+    });
+    
 });
